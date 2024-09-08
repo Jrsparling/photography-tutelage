@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import Login from './Login.jsx'
+import Signup from './Signup.jsx';
 import {
   Menu,
   MenuButton,
@@ -14,24 +15,66 @@ import {
   Button, 
   ButtonGroup,
   Stack,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Flex,
 } from '@chakra-ui/react'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <Box bg='skyblue' w='100%' p={10} color='white' fontSize={32} display='flex' justifyContent='space-between'>
+const Navbar = () => {
+  const { isOpen:isOpenLogin, onOpen:onOpenLogin, onClose:onCloseLogin } = useDisclosure()
+  const { isOpen:isOpenSignup, onOpen:onOpenSignup, onClose:onCloseSignup } = useDisclosure()
+  return (<>
+    <Box bg='steelblue' w='100%' p={10} color='white' fontSize={32} display='flex' justifyContent='space-between'>
   <p>Photography Tutelage</p>
   <Stack direction='row' spacing={4}>
-  <Button leftIcon={<AddIcon />} colorScheme='teal' variant='solid'>
-    Signup
+  <Button onClick={onOpenSignup}  colorScheme='gray' variant='solid'>
+    Sign up
   </Button>
-  <Button rightIcon={<WarningIcon />} colorScheme='teal' variant='outline'>
+  <Button onClick={onOpenLogin}  colorScheme='gray' variant='solid'>
     Login
   </Button>
 </Stack>
     </Box>
-    
+
+      <Modal isOpen={isOpenLogin} onClose={onCloseLogin}>
+        <p>Login</p>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody>
+            <Login>
+
+            </Login>
+          </ModalBody>
+          <ModalFooter>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isOpenSignup} onClose={onCloseSignup}>
+        <p>Signup</p>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody>
+            <Signup>
+
+            </Signup>
+          </ModalBody>
+          <ModalFooter>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+  </>
+
+
     // //<nav className="bg-white shadow-lg">
     //   //<div className="max-w-6xl mx-auto px-4">
     //     //<div className="flex justify-between">

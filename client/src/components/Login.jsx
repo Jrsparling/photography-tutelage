@@ -1,15 +1,35 @@
 
+import React, { Component, useState } from 'react';
+import { Input, InputGroup, Button, InputRightElement, Stack, HStack, VStack} from '@chakra-ui/react'
 
 function Login() {
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
+
   return (
-   <form className="p-8 border bg-white shadow-lg flex flex-col w-72 gap-2 rounded">
-    <label className="block">Username</label>
-    <input type="text" className="block border border-gray-600" />
-    <label className="block">Password</label>
-    <input type="password" className="block border border-gray-600" /> 
-    <button type="submit" className="block bg-cyan-300">Login</button>
-    <button className="bg-slate-400">Sign Up</button>
-   </form>
+    <Stack spacing={3} mt={12}>
+    <p>Login</p>
+    <InputGroup size='md'>
+       <Input
+        pr='4.5rem'
+        type={show ? 'text' : 'email'}
+        placeholder='Enter email'
+      />
+      </InputGroup>
+      <InputGroup size='md'>
+      <Input
+        pr='4.5rem'
+        type={show ? 'text' : 'password'}
+        placeholder='Enter password'
+      />
+      <InputRightElement width='4.5rem'>
+        <Button h='1.75rem' size='sm' onClick={handleClick}>
+          {show ? 'Hide' : 'Show'}
+        </Button>
+      </InputRightElement>
+    </InputGroup>
+    <Button colorScheme='blue'>Button</Button>
+  </Stack>
   )
 }
 

@@ -4,6 +4,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -15,6 +16,7 @@ function App() {
     <ApolloProvider client={client}>
       <div className="bg-teal-700 min-h-screen">
         <Navbar />
+        <Footer />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
