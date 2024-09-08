@@ -1,17 +1,20 @@
-import { useState } from "react"
-import Login from "../components/Login"
-import Signup from "../components/signup"
-
+import { useState } from "react";
+import Login from "../components/Login";
+import Signup from "../components/signup";
+import { Flex } from "@chakra-ui/react";
 
 function Auth() {
-  const [islogin, setIslogin]=useState(true)
+  const [islogin, setIslogin] = useState(true);
   return (
-    <div className="flex flex-col items-center justify-center min-h-96">
-      {
-        islogin? <Login/>:<Signup/>
-      }
-    </div>
-  )
+    <Flex
+      minH="36rem"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
+      {islogin ? <Login /> : <Signup />}
+    </Flex>
+  );
 }
 
-export default Auth
+export default Auth;

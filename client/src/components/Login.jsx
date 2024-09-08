@@ -1,16 +1,28 @@
-
+import { Box, Button, Input } from "@chakra-ui/react";
 
 function Login() {
   return (
-   <form className="p-8 border bg-white shadow-lg flex flex-col w-72 gap-2 rounded">
-    <label className="block">Username</label>
-    <input type="text" className="block border border-gray-600" />
-    <label className="block">Password</label>
-    <input type="password" className="block border border-gray-600" /> 
-    <button type="submit" className="block bg-cyan-300">Login</button>
-    <button className="bg-slate-400">Sign Up</button>
-   </form>
-  )
+    <Box
+      as="form"
+      padding={"16px"}
+      bg="white"
+      boxShadow={"outline"}
+      display={"flex"}
+      flexDirection={"column"}
+      maxWidth={"35rem"}
+      gap={"5px"}
+      rounded={"10px"}
+    >
+      <label >Username</label>
+      <Input size={'lg'} placeholder="Enter Username"  />
+      <label >Password</label>
+      <Input type="password" size={'lg'} placeholder="Enter Password" />
+      <Button type="submit" size={'md'} colorScheme="teal">
+        Login
+      </Button>
+      <Button size={'md'} colorScheme="cyan" >Sign Up</Button>
+    </Box>
+  );
 }
 
-export default Login
+export default Login;

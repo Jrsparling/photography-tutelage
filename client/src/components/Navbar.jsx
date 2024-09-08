@@ -1,55 +1,54 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import {
+  Box,
+  Flex,
+  HStack,
+  useDisclosure,
+  useColorModeValue,
+  Stack,
+  IconButton,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { NavLink } from 'react-router-dom'
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Navbar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <nav className="bg-white shadow-lg">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between">
-          <div className="flex  justify-between w-full">
-            <div>
-              {/* Website Logo */}
-              <NavLink to="/" className="flex items-center py-4 px-2">
-                <span className="font-semibold text-gray-500 text-lg">Photography Tutelage</span>
-              </NavLink>
-            </div>
-            {/* Primary Navbar items */}
-            <div className="hidden md:flex items-center space-x-1">
-            <NavLink to='/'className="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300" >Home</NavLink>
-            <NavLink to='/auth'className="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300" >Login</NavLink>
-            </div>
-          </div>
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button className="outline-none mobile-menu-button" onClick={() => setIsOpen(!isOpen)}>
-              <svg
-                className="w-6 h-6 text-gray-500 hover:text-green-500"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      {/* Mobile Menu */}
-      <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
-        <NavLink to='/'className="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300" >Home</NavLink>
-        <NavLink to='/auth'className="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300" >Login</NavLink>
-      </div>
-    </nav>
-  );
-};
+    <>
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+          <IconButton
+            size={"md"}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            aria-label={"Open Menu"}
+            display={{ md: "none" }}
+            onClick={isOpen ? onClose : onOpen}
+          />
+          <HStack spacing={8} alignItems={"center"}>
+            <Box fontSize='larger' fontWeight='bold' fontFamily='cursive'>Photography Tutelage</Box>
+            
+          </HStack>
+          <Flex alignItems={"center"}>
+          <HStack
+              as={"nav"}
+              spacing={4}
+              display={{ base: "none", md: "flex" }}
+            >
+             <NavLink to={'/'}>Home</NavLink>
+             <NavLink to={'/auth'}>Login</NavLink>
+            </HStack>
+          </Flex>
+        </Flex>
 
-export default Navbar;
+        {isOpen ? (
+          <Box pb={4} display={{ md: "none" }}>
+            <Stack as={"nav"} spacing={4}>
+            <NavLink to={'/'}>Home</NavLink>
+             <NavLink to={'/auth'}>Login</NavLink>
+            </Stack>
+          </Box>
+        ) : null}
+      </Box>
+    </>
+  );
+}
