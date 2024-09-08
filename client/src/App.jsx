@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Box } from "@chakra-ui/react";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -14,14 +15,14 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="bg-teal-700 min-h-screen">
+      <Box bg={'teal'} minH={'100vh'}>
         <Navbar />
         <Footer />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>
-      </div>
+      </Box>
     </ApolloProvider>
   );
 }

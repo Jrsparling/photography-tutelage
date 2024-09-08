@@ -3,17 +3,11 @@ import { NavLink } from 'react-router-dom';
 import Login from './Login.jsx'
 import Signup from './Signup.jsx';
 import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
   Box,
-  Button, 
-  ButtonGroup,
+  Flex,
+  HStack,
+  useDisclosure,
+  useColorModeValue,
   Stack,
   Modal,
   ModalOverlay,
@@ -121,5 +115,3 @@ const Navbar = () => {
     // </nav>
   );
 };
-
-export default Navbar;
