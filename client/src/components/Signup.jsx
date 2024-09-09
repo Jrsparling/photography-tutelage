@@ -1,9 +1,9 @@
 
-import React, { Component, useState } from 'react';
-import { Input, InputGroup, Button, InputRightElement, Stack, HStack, VStack, } from '@chakra-ui/react'
+import { useState } from 'react';
+import { Input, InputGroup, Button, InputRightElement, Stack } from '@chakra-ui/react'
 
 function Signup() {
-  const [show, setShow] = React.useState(false)
+  const [show, setShow] =useState(false)
   const handleClick = () => setShow(!show)
   return (
       <Stack spacing={3} mt={12}>

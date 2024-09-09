@@ -1,10 +1,6 @@
 import { useState } from "react"
 import Login from "../components/Login"
 import Signup from "../components/Signup"
-
-import { useState } from "react";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
 import { Flex } from "@chakra-ui/react";
 
 function Auth() {
