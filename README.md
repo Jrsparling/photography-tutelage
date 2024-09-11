@@ -67,7 +67,7 @@ cd Photography-Tutelage
 
 ## Questions
 
-Got questions? Reach out to me: 
+Got questions? Reach out to the Developers: 
 
 Developer GitHub Profiles:
 - [Jerry Sparling](https://github.com/Jrsparling)
