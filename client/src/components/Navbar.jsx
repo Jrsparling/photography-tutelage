@@ -4,9 +4,8 @@ import Login from './Login.jsx'
 import Signup from './Signup.jsx';
 import {
   Box,
-  Flex,
+  Button,
   HStack,
-  useDisclosure,
   useColorModeValue,
   Stack,
   Modal,
@@ -18,8 +17,13 @@ import {
   ModalCloseButton,
   useDisclosure,
   Flex,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
 } from '@chakra-ui/react'
-import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
+import { PhoneIcon, AddIcon, WarningIcon, HamburgerIcon, } from '@chakra-ui/icons'
 
 const Navbar = () => {
   const { isOpen:isOpenLogin, onOpen:onOpenLogin, onClose:onCloseLogin } = useDisclosure()
@@ -27,7 +31,50 @@ const Navbar = () => {
   return (<>
     <Box bg='steelblue' w='100%' p={10} color='white' fontSize={32} display='flex' justifyContent='space-between'>
   <p>Photography Tutelage</p>
+  {/* <ul>
+  <li>
+    <NavLink to='/'>
+        Home
+      </NavLink>
+    </li>
+    <li>
+      <NavLink to='/account'>
+        Account
+      </NavLink>
+    </li>
+    <li>
+    <NavLink to='/discussion'>
+        Discussion
+      </NavLink>
+    </li>
+  </ul> */}
+
   <Stack direction='row' spacing={4}>
+  <Menu>
+  <MenuButton
+    as={IconButton}
+    aria-label='Options'
+    icon={<HamburgerIcon />}
+    variant='outline'
+  />
+  <MenuList bg='teal'>
+    <MenuItem bg='teal' >
+    <NavLink to='/'>
+        Home
+      </NavLink>
+    </MenuItem>
+    <MenuItem bg='teal'>
+    <NavLink to='/account'>
+        Account
+      </NavLink>
+    </MenuItem>
+    <MenuItem bg='teal'>
+    <NavLink to='/discussion'>
+        Discussion
+      </NavLink>
+    </MenuItem>
+  </MenuList>
+</Menu> 
   <Button onClick={onOpenSignup}  colorScheme='gray' variant='solid'>
     Sign up
   </Button>
@@ -115,3 +162,5 @@ const Navbar = () => {
     // </nav>
   );
 };
+
+export default Navbar
