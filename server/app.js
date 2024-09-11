@@ -21,8 +21,7 @@ const server = new ApolloServer({
   resolvers,
 });
 
-app.use(express.json());
-app.use(methodOverride('_method'));
+
 
 const mongoose = require('mongoose');
 
@@ -33,7 +32,6 @@ const startApolloServer = async () => {
     await server.start();
   
     app.use(express.urlencoded({ extended: false }));
-    app.use(express.json());
     app.use(express.json());
     app.use(methodOverride('_method'));
   
