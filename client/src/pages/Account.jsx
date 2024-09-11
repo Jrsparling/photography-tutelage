@@ -67,7 +67,9 @@ export default function Account() {
   
 </UnorderedList>
   </GridItem>
-  <GridItem rowSpan={2} colSpan={4} bg='tomato' ></GridItem>
+  <GridItem rowSpan={2} colSpan={4} bg='tomato' >
+  <Heading>Placeholder for Users Most Recent Photos</Heading>
+  </GridItem>
 </Grid>
   )
 }
