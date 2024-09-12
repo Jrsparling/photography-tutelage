@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Button } from '@chakra-ui/react';
+import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 
 const Footer = () => {
   return (
@@ -13,15 +14,22 @@ const Footer = () => {
       color='white'
       fontSize={32}
       display="flex"
-      justifyContent="space-between"
+      justifyContent="center"
       alignItems="center"
       zIndex={1000}
     >
       <Button colorScheme='gray' variant='solid'>
-        <p>Left</p>
+        <ArrowLeftIcon>
+
+        </ArrowLeftIcon>
       </Button>
+      <Box w='80%' p={10} color='white' fontSize={32} display='flex' justifyContent='space-between' bg='white' m={5}>
+        
+      </Box>
       <Button colorScheme='gray' variant='solid'>
-        <p>Right</p>
+      <ArrowRightIcon>
+        
+      </ArrowRightIcon>
       </Button>
     </Box>
   );
