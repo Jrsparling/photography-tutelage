@@ -1,6 +1,6 @@
-import {useMutation} from '@apollo/react-hooks'
 import  { useState } from 'react';
 import { Input, InputGroup, Button, InputRightElement, Stack} from '@chakra-ui/react'
+import {useMutation} from '@apollo/react-hooks'
 import Auth from '../utils/auth'
 import {LOGIN} from  '../utils/mutations'
 
@@ -8,7 +8,6 @@ function Login() {
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
   const [formData, setFormData]= useState({
-    username: '',
     email: '',
     password: '',
   })

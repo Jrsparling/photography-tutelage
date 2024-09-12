@@ -9,10 +9,10 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('post');
     },
-    post: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Post.find(params).sort({ createdAt: -1 });
-    },
+    // post: async (parent, { username }) => {
+    //   const params = username ? { username } : {};
+    //   return Post.find(params).sort({ createdAt: -1 });
+    // },
     thought: async (parent, { postId }) => {
       return Post.findOne({ _id: postId });
     },
@@ -32,7 +32,7 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
+      
       if (!user) {
         throw AuthenticationError;
       }

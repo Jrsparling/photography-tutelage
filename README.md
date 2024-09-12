@@ -22,6 +22,16 @@
 This app features various discussion board pages to discuss various photography topics. Share knowledge, experiences, tips, and tricks 
 all in one place. Utilizing the MERN stack we have a full stack application.
 
+### Technologies Used
+- **Node.js**: JavaScript runtime for executing server-side code.
+- **Express.js**: Web framework for building the server.
+- **MongoDB**: NoSQL database for storing application data.
+- **Mongoose**: ODM for MongoDB, providing a schema-based solution.
+- **React**: Front-end library for building user interfaces.
+- **Apollo**: GraphQL client for managing data and state in the application.
+- **Chakra UI**: A simple, modular, and accessible component library for React.
+- **GraphQL**: Query language for APIs to fetch and manipulate data.
+
 ## Installation
 To get a local copy up and running, follow these steps:
 
