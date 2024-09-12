@@ -1,21 +1,34 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-// const User = require('./user');
-
-const { Schema } = mongoose;
-
-const photoSchema = new Schema({
+const photoSchema = new Schema(
+  {
       userId: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      URL: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
+        },
+      name: {
         type: String,
         required: true,
-        trim: true
+        },
+      caption: {
+        type: String,
+        required: true,
+        },
+      image: {
+        data: Buffer,
+        contentType: String,
+        },
+      URL: {
+        type: String,
+        trim: true,
       },
-    });
+    },
+  );
+
+const Photo = model('Photo', photoSchema);
+
+module.exports = Photo;
     // file type
     // ios
     // Aperture

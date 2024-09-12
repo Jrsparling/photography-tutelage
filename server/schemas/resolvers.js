@@ -1,9 +1,9 @@
-const { User, Post } = require('../models');
+const { User, Post, Photo } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    users: async () => {
+   /*  users: async () => {
       return User.find().populate('post');
     },
     user: async (parent, { username }) => {
@@ -21,13 +21,39 @@ const resolvers = {
         return User.findOne({ _id: context.user._id }).populate('post');
       }
       throw new AuthenticationError('You need to be logged in!');
+    }, */
+    users: async () => {
+      return User.find().populate('posts');
     },
+
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('posts');
+    },
+
+    posts: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Post.find(params).sort({ createdAt: -1 });
+    },
+
+    post: async (parent, { postId }) => {
+      return Post.findOne({ _id: postId }).populate('photos');
+    },
+
+    photos: async (parent, { username }) => {
+      const params = username ? {username } : {};
+      return Photo.find(params);
+    },
+
+    photo: async (parent, { photoId }) => {
+      return Photo.findOne({ _id: photoId });
+    }
   },
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
+      
       return { token, user };
     },
     login: async (parent, { email, password }) => {
@@ -47,7 +73,40 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText }, context) => {
+    addPost: async (parent, {postText, userId, photoId }) => {
+      const post = await Post.create({ postText, userId, photoId });
+
+      await User.findOneAndUpdate(
+        { username: userId },
+        { $addToSet: { posts: post._id } }
+      );
+
+      return Post;
+    },
+    addComment: async (parent, {postId, commentBody, userId}) => {
+      return Post.findOneAndUpdate(
+        { _id: postId },
+        {
+          $addToSet: {comments: { commentBody, userId }},
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+    removePost: async (parent, { postId }) => {
+      return Post.findOneAndDelete({ _id: postId });
+    },
+    removeComment: async (parent, { postId, commentId }) => {
+      return Post.findOneAndUpdate(
+        { _id: postId },
+        { $pull: { comments: { _id: commentId }}},
+        { new: true }
+      );
+    },
+
+    /* addThought: async (parent, { thoughtText }, context) => {
       if (context.user) {
         const thought = await Post.create({
           thoughtText,
@@ -113,7 +172,7 @@ const resolvers = {
         );
       }
       throw AuthenticationError;
-    },
+    }, */
   },
 };
 

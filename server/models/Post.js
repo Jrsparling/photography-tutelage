@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
-const commentSchema = new Schema(
+/* const commentSchema = new Schema(
     {
         commentId: {
             type: Schema.Types.ObjectId,
@@ -16,7 +17,7 @@ const commentSchema = new Schema(
             required: true,
         }
     }
-);
+); */
 const postSchema = new Schema(
     {
         postText: {
@@ -25,24 +26,46 @@ const postSchema = new Schema(
             minLength: 1,
             maxLength: 500,
         },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-            get: (date) => date.toLocaleDateString('en-US'),
-        },
         userId: {
             type: Schema.Types.ObjectId,
             ref: "User",
             required: true,
         },
-        photoId: {
-            type: Schema.Types.ObjectId,
-            ref: "Photo",
-            required: false,
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: (timestamp) => dateFormat(timestamp),
+            /* get: (date) => date.toLocaleDateString('en-US'), */
         },
-        comments: [commentSchema],
+        photoId: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Photo",
+            },
+          ],
+        comments: [
+            {
+              commentBody: {
+                type: String,
+                required: false,
+                minlength: 1,
+                maxlength: 280,
+              },
+              createdAt: {
+                type: Date,
+                default: Date.now,
+                get: (timestamp) => dateFormat(timestamp),
+              },
+              userId: {
+                type: String,
+                required: true,
+              },
+            },
+          ],
     },
 );
+
+/* comments: [commentSchema], */
 const Post = model('Post', postSchema);
 
 module.exports = Post;
