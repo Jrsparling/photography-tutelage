@@ -83,6 +83,6 @@ Developer GitHub Profiles:
 - [Jerry Sparling](https://github.com/Jrsparling)
 - [Gail Lynn](https://github.com/gaillynnn)
 - [Denning Cars](https://github.com/denningcars)
-- [Jorge Baldivinos](https://github.com/Jorge-Baldivinos)
+- [Jorge Baldovinos](https://github.com/Jorge-Baldovinos)
 - [Dark N Oak](https://github.com/Dark-N-Oak)
 
